@@ -1,5 +1,5 @@
 # app1/Dockerfile
-FROM python:3.8-alpine
+FROM python:3.10-alpine
 
 WORKDIR /app
 COPY . /app
