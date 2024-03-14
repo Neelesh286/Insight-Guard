@@ -27,3 +27,4 @@ dist-ssr
 #backend
 myenv
 glaucoma.h5
+.env
