@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import UploadedImage
 from PIL import Image
+from .prediction import Predict
 
 class UploadedImageSerializer(serializers.ModelSerializer):
     class Meta:
@@ -10,8 +11,12 @@ class UploadedImageSerializer(serializers.ModelSerializer):
     def validate_image(self,value):
         try:
             img = Image.open(value)
+            print(f'Image is of type {value}')
+            predictor = Predict()  # Instantiate the Predict class
+            result = predictor.prediction(img)
+            print('===============', result, sep='\n')
         except Exception as e:
-            raise serializers.ValidationError("Invalid Image Format")
+            raise serializers.ValidationError(e)
         
         valid_formats = ['PNG', 'JPEG', 'JPG']
         if img.format not in valid_formats:
