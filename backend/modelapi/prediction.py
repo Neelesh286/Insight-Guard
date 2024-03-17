@@ -15,6 +15,14 @@ class Predict:
         try:    
             model = tf.keras.models.load_model(self.model_path)
             print("Model loaded successfully from:", self.model_path)
+
+            conv_weights = model.get_layer('conv_layer').get_weights()
+
+            # Get the shape of the kernel
+            kernel_shape = conv_weights[0].shape
+
+            print("Kernel shape:", kernel_shape)
+            
             # Make predictions using the loaded model
             input_data_resized = image.resize((240, 240))
             input_data_array = np.array(input_data_resized)

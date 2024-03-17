@@ -15,3 +15,5 @@ TASK LIST
 - [ ] Make model predict
 - [ ] Draw Eclipse with Opencv2
 - [ ] Upload image to s3
+
+- Download our ML model using the link [here](https://drive.google.com/file/d/19NnGMA99WZls7KM4sJ7jArz7dFzXJKnF/view?usp=drive_link)
