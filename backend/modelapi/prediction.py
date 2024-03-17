@@ -1,6 +1,6 @@
-import tensorflow as tf
 import os
 import numpy as np
+import tensorflow as tf
 from tensorflow.keras.preprocessing import image
 
 class Predict:
@@ -9,23 +9,16 @@ class Predict:
 
     def __init__(self):
         print("Prediction model initialization")
-        # self.prediction(self.model_path)
 
     def prediction(self, input_data):
-        try:    
+        try:
+            # Load the model
             model = tf.keras.models.load_model(self.model_path)
             print("Model loaded successfully from:", self.model_path)
 
-            conv_weights = model.get_layer('conv_layer').get_weights()
-
-            # Get the shape of the kernel
-            kernel_shape = conv_weights[0].shape
-
-            print("Kernel shape:", kernel_shape)
-            
             # Make predictions using the loaded model
-            input_data_resized = image.resize((240, 240))
-            input_data_array = np.array(input_data_resized)
+            input_data_resized = image.array_to_img(input_data.resize((240, 240)))
+            input_data_array = image.img_to_array(input_data_resized)
             input_data_array = np.expand_dims(input_data_array, axis=0)
             predictions = model.predict(input_data_array)
 
@@ -33,7 +26,6 @@ class Predict:
                 return "Glaucoma"
             else:
                 return "Normal"
-            
+
         except Exception as e:
             print(e)
-    
