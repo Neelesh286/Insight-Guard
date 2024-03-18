@@ -7,7 +7,7 @@ from .prediction import Predict
 class UploadedImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = UploadedImage
-        fields = ('id', 'image', 'uploaded_at')
+        fields = ('id', 'image', 'uploaded_at','result')
     
     def validate_image(self, value):
         try:
@@ -33,5 +33,6 @@ class UploadedImageSerializer(serializers.ModelSerializer):
         saved_img = Image.open(saved_image_path)
         print(f'========={saved_image_path}=========')
         saved_image_path_obj = Path(saved_image_path)
-        result = predictor.prediction(saved_image_path_obj)
+        res   ult = predictor.prediction(saved_image_path_obj)
+        print(f'MODEL PREDICTION RESULT IS => {result}')
         return instance

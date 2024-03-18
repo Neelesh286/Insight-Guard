@@ -30,3 +30,6 @@ class UploadImageView(APIView):
             serializer.save()
             return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
         return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    # def get(self,request, *args, **kwargs):
+        
