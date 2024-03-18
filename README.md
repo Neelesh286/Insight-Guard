@@ -11,9 +11,9 @@ Currently, two official plugins are available:
 TASK LIST
 - [x] Make Basic File upload 
 - [x] Make validation before upload 
-- [ ] Refactor image after upload - WIP
-- [ ] Make model predict
-- [ ] Draw Eclipse with Opencv2
+- [x] Refactor image after upload 
+- [x] Make model predict 
+- [ ] Draw Eclipse with Opencv2 - **WIP 🛠️**
 - [ ] Upload image to s3
 
 - Download our ML model using the link [here](https://drive.google.com/file/d/19NnGMA99WZls7KM4sJ7jArz7dFzXJKnF/view?usp=drive_link)
