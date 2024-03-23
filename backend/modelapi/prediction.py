@@ -30,9 +30,11 @@ class Predict:
             print(result)
 
             if result < 0.5:
+                #used for checking result
                 print(f'Predicted class is Glaucoma')
                 return 'Predicted class is Glaucoma'
             else:
+                #used for checking result
                 print(f'Predicted class is Normal')
                 return 'Predicted class is Normal'
 

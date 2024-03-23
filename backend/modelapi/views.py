@@ -1,5 +1,4 @@
 from rest_framework.views import APIView
-# from rest_framework.response import Response
 from django.http import JsonResponse
 
 # import json
@@ -19,8 +18,8 @@ class HelloWorldView(APIView):
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import UploadedImage
-from .serializers import UploadedImageSerializer
+from .models import UploadedImage, UploadedResult
+from .serializers import UploadedImageSerializer, UploadedResultSerializer
 from rest_framework.views import APIView
 
 class UploadImageView(APIView):
@@ -31,5 +30,17 @@ class UploadImageView(APIView):
             return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
         return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    # def get(self,request, *args, **kwargs):
-    # Use @GET METHOD TO FETCH THE RESULT 
+
+class UploadedResultAPIView(APIView):
+    def get(self,request, image_id):
+        try:
+            uploaded_image = UploadedImage.objects.get(id = image_id)
+            uploaded_result = UploadedResult.objects.get(uploaded_image=uploaded_image)
+            serializer = UploadedResultSerializer(uploaded_result)
+            return JsonResponse(serializer.data, status = status.HTTP_200_OK)
+        except UploadedImage.DoesNotExist:
+            return JsonResponse({"error":"Uploaded Image does not exist"}, status=status.HTTP_404_NOT_FOUND)
+        except UploadedResult.DoesNotExist:
+            return JsonResponse({"error": "Result Not Found for the uploaded image"}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return JsonResponse({"error occurred: ==>", e})
