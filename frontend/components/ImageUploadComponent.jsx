@@ -5,6 +5,7 @@ const ImageUploadComponent = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploadStatus, setUploadStatus] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [resultData, setResultData] = useState(null);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -26,6 +27,13 @@ const ImageUploadComponent = () => {
         console.log('Upload successful:', response.data);
         setUploadStatus('success');
         setErrorMessage(null); // Clear any previous error messages
+
+        // Extract the image ID from the response
+        const imageId = response.data.id;
+        // Now make a GET request to fetch the result for the uploaded image
+        const resultResponse = await axios.get(`http://localhost:8000/api/result/${imageId}/`);
+        console.log('Result:', resultResponse.data);
+        setResultData(resultResponse.data);
       } catch (error) {
         console.error('Error uploading image:', error);
         if (error.response && error.response.data) {
@@ -53,6 +61,14 @@ const ImageUploadComponent = () => {
 
       {uploadStatus === 'error' && (
         <div style={{ color: 'red' }}>{errorMessage}</div>
+      )}
+
+      {resultData && (
+        <div>
+          <h3>Result for Uploaded Image</h3>
+          <p>Status: {resultData.status}</p>
+          {/* Display additional result data as needed */}
+        </div>
       )}
     </div>
   );
