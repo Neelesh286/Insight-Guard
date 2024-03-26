@@ -18,4 +18,4 @@ TASK LIST
 
 - Download our ML model using the link [here](https://drive.google.com/file/d/19NnGMA99WZls7KM4sJ7jArz7dFzXJKnF/view?usp=drive_link)
 - List of Model Folder in [Google Drive](https://drive.google.com/drive/folders/1jX9-Ckk1CHz3q4eT8JAesepXoGVXiCqt?usp=sharing)
-- List of Resource Materials [here](https://github.com/Younus-Saberi/GlaucomaDetection/edit/master/README.md)
+- List of Resource Materials [here](https://github.com/Younus-Saberi/GlaucomaDetection/master/tree/resources)
