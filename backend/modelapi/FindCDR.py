@@ -102,3 +102,6 @@ class FindCDRatio:
         print('Cup to Disc Ratio:'+str(cdr))
 
         #cv2.imwrite('.', image)
+        result ={"disc_area": disc,"cup_area":cuparea,"cupdisc_ratio": cdr,"s3_link":"https://example.com"}
+        
+        return result

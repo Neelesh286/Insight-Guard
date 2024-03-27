@@ -18,8 +18,8 @@ class HelloWorldView(APIView):
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import UploadedImage, UploadedResult
-from .serializers import UploadedImageSerializer, UploadedResultSerializer
+from .models import UploadedImage, UploadedResult, ProcessedImage
+from .serializers import UploadedImageSerializer, UploadedResultSerializer,ProcessedImageSerializer
 from rest_framework.views import APIView
 from .FindCDR import FindCDRatio
 
@@ -54,9 +54,20 @@ class ImageProcessingView(APIView):
             user_image_path = latest_image.image.path
             print('=====USER IMAGE PATH====', user_image_path)
             compute = FindCDRatio()
-            compute.calculateCDR(user_image_path)
-            return JsonResponse({"status":"Done"}, status.HTTP_201_CREATED)
+            result_data = compute.calculateCDR(user_image_path)
+
+            # Create ProcessedImage instance
+            processed_image = ProcessedImage.objects.create(
+                uploaded_image=latest_image,
+                disc_area=result_data["disc_area"],
+                cup_area=result_data["cup_area"],
+                cupdisc_ratio=result_data["cupdisc_ratio"],
+                s3_link=result_data["s3_link"]
+            )
+
+            serializer = ProcessedImageSerializer(processed_image)
+            return Response({"status": serializer.data}, status=status.HTTP_201_CREATED)
             
         except Exception as e:
-            print({"Error Occurred :===>": e}, status.HTTP_404_NOT_FOUND)
-            return JsonResponse({"status":"Wrong"}, status.HTTP_404_NOT_FOUND)
+            print("Error Occurred :===>",e)
+            return JsonResponse({"error occurred: ==>", e})
