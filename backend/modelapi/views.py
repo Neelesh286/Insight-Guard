@@ -21,6 +21,7 @@ from rest_framework.response import Response
 from .models import UploadedImage, UploadedResult
 from .serializers import UploadedImageSerializer, UploadedResultSerializer
 from rest_framework.views import APIView
+from .FindCDR import FindCDRatio
 
 class UploadImageView(APIView):
     def post(self,request, *args, **kwargs):
@@ -44,3 +45,18 @@ class UploadedResultAPIView(APIView):
             return JsonResponse({"error": "Result Not Found for the uploaded image"}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
             return JsonResponse({"error occurred: ==>", e})
+        
+class ImageProcessingView(APIView):
+    def post(self, request, *args, **kwargs):
+        try:
+            latest_image = UploadedImage.objects.latest('uploaded_at')
+            print("=====Latest Image is=====", latest_image)
+            user_image_path = latest_image.image.path
+            print('=====USER IMAGE PATH====', user_image_path)
+            compute = FindCDRatio()
+            compute.calculateCDR(user_image_path)
+            return JsonResponse({"status":"Done"}, status.HTTP_201_CREATED)
+            
+        except Exception as e:
+            print({"Error Occurred :===>": e}, status.HTTP_404_NOT_FOUND)
+            return JsonResponse({"status":"Wrong"}, status.HTTP_404_NOT_FOUND)
