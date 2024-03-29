@@ -101,7 +101,14 @@ class FindCDRatio:
         cdr = cuparea / disc
         print('Cup to Disc Ratio:'+str(cdr))
 
-        #cv2.imwrite('.', image)
+        #TODO: ADD OPTIMISATION IN THE FILE SYSTEM 
+        # output_folder = 'contour_images'
+        # output_path = os.path.join(output_folder, 'output_image.jpg')
+        # print('##################', output_path)
+        import datetime as dt
+        timestamp = dt.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+        filename = f"image_{timestamp}.png"
+        cv2.imwrite(filename, image)
         result ={"disc_area": disc,"cup_area":cuparea,"cupdisc_ratio": cdr,"s3_link":"https://example.com"}
         
         return result
