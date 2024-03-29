@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import UploadedImage, UploadedResult
+from .models import UploadedImage, UploadedResult,ProcessedImage
 from PIL import Image
 from pathlib import Path
 from .prediction import Predict
@@ -41,3 +41,7 @@ class UploadedResultSerializer(serializers.ModelSerializer):
     class Meta:
         model = UploadedResult
         fields = ('id', 'uploaded_image', 'status')
+class ProcessedImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProcessedImage
+        fields = ('id', 'uploaded_image', 'disc_area','cup_area','cupdisc_ratio','s3_link')
