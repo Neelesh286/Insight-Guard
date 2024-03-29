@@ -1,7 +1,12 @@
 import cv2
 import numpy as np
 from PIL import Image, ImageEnhance
+import boto3
 import os
+from django.core.files.storage import default_storage
+from django.conf import settings
+from dotenv import load_dotenv
+load_dotenv()
 
 #TODO: use to take user_image dynamically
 class FindCDRatio:
@@ -108,7 +113,33 @@ class FindCDRatio:
         import datetime as dt
         timestamp = dt.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
         filename = f"image_{timestamp}.png"
+        objectname = f"object_{timestamp}.png"
         cv2.imwrite(filename, image)
-        result ={"disc_area": disc,"cup_area":cuparea,"cupdisc_ratio": cdr,"s3_link":"https://example.com"}
+        # Inside your method after cv2.imwrite
+        # Construct the file path where you want to save the image
+        file_path = os.path.join(settings.MEDIA_ROOT, filename)
+
+        # Save the image using Django's file storage system
+        with open(filename, 'rb') as file:
+            default_storage.save(file_path, file)
+
+        s3link = self.upload_image_to_s3(file_path, objectname)
+        print('=======Your S3 Link is========== ', s3link)
+
+        result ={"disc_area": disc,"cup_area":cuparea,"cupdisc_ratio": cdr,"s3_link":s3link}
         
         return result
+
+    def upload_image_to_s3(self,path_file, object_name):
+        # Initialize S3 client
+        aws_access_key = os.getenv('AWS_ACCESS_KEY')
+        aws_secret_key = os.getenv('AWS_SECRET_KEY')
+        bucketname = os.getenv('AWS_BUCKET_NAME')
+        s3 = boto3.client('s3',aws_access_key_id=aws_access_key,aws_secret_access_key=aws_secret_key)
+        
+        # Upload image to S3
+        with open(path_file, 'rb') as f:
+            s3.upload_fileobj(f, bucketname, object_name)
+        
+        link = f"https://{bucketname}.s3.ap-south-1.amazonaws.com/{object_name}"
+        return link 

@@ -1,5 +1,6 @@
 from rest_framework.views import APIView
 from django.http import JsonResponse
+from PIL import Image
 
 # import json
 # import numpy as np
@@ -55,10 +56,12 @@ class ImageProcessingView(APIView):
             print('=====USER IMAGE PATH====', user_image_path)
             compute = FindCDRatio()
             result_data = compute.calculateCDR(user_image_path)
-
+            saved_image = Image.open(user_image_path)
+    
             # Create ProcessedImage instance
             processed_image = ProcessedImage.objects.create(
                 uploaded_image=latest_image,
+                
                 disc_area=result_data["disc_area"],
                 cup_area=result_data["cup_area"],
                 cupdisc_ratio=result_data["cupdisc_ratio"],
