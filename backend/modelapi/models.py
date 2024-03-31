@@ -27,7 +27,7 @@ class ProcessedImage(models.Model):
     cup_area = models.FloatField(max_length = 50)
     cupdisc_ratio = models.FloatField(max_length = 50)
     s3_link = models.URLField()
-    #pending to add up result field if all goes well
+    uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"Processed Image for {self.uploaded_image}"

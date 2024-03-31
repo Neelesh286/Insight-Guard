@@ -1,4 +1,5 @@
 from rest_framework.views import APIView
+from rest_framework import generics
 from django.http import JsonResponse
 from PIL import Image
 
@@ -61,7 +62,6 @@ class ImageProcessingView(APIView):
             # Create ProcessedImage instance
             processed_image = ProcessedImage.objects.create(
                 uploaded_image=latest_image,
-                
                 disc_area=result_data["disc_area"],
                 cup_area=result_data["cup_area"],
                 cupdisc_ratio=result_data["cupdisc_ratio"],
@@ -74,3 +74,14 @@ class ImageProcessingView(APIView):
         except Exception as e:
             print("Error Occurred :===>",e)
             return JsonResponse({"error occurred: ==>", e})
+        
+class LatestUploadedImageView(generics.RetrieveAPIView):
+    serializer_class = ProcessedImageSerializer
+
+    def get_object(self):
+        try:
+            # Retrieve the latest uploaded image
+            latest_image = UploadedImage.objects.latest('uploaded_at')
+            return ProcessedImage.objects.get(uploaded_image=latest_image)
+        except ProcessedImage.DoesNotExist:
+            return None
