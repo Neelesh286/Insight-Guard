@@ -52,17 +52,17 @@ const ImageUploadComponent = ({ backendUrl }) => {
     <div className='w-full bg-white py-16 px-4'>
       <div className='max-w-[1240px] mx-auto grid md:grid-cols-2'>
         <div className="md:col-span-2 text-center">
-          <p className="mb-4 text-lg font-bold">Try our Eye Testing Below !!!</p>
+          <p className="md:text-4xl sm:text-3xl text-2xl font-bold py-2">Try our Eye Testing Below !!!</p>
           <input type="file" accept="image/*" onChange={handleImageChange}   className="md:col-span-2 mb-4 mx-auto appearance-none border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-4"/>
           <button onClick={handleUpload} className="bg-black text-[#00df9a] w-[200px] rounded-md font-medium my-6 py-3">Upload Image</button>
         </div>
 
         {uploadStatus === 'success' && (
-          <div className="md:col-span-2 text-green-600 text-center">File uploaded successfully!</div>
+          <div className="md:col-span-2 text-green-600 text-center md:text-2xl sm:text-2xl text-xl font-semibold py-2">File uploaded successfully!</div>
         )}
 
         {uploadStatus === 'error' && (
-          <div className="md:col-span-2 text-red-600 text-center">{errorMessage}</div>
+          <div className="md:col-span-2 text-red-600 text-center md:text-xl sm:text-2xl text-xl font-bold py-2">{errorMessage}</div>
         )}
 
         {resultData && (

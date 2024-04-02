@@ -14,21 +14,24 @@ const ImageProcessingComponent = ({ backendUrl }) => {
   };
 
   return (
-    <div className='text-center bg-gray-300'>
-      <button onClick={handlePostClick} className="bg-black text-[#00df9a] rounded-md font-medium py-2 px-4 mb-4 inline-block">Calculate CDR Ratio</button>
+    <div className="text-center bg-gray-300 pb-16 border-b-0 pt-16">
+      <button onClick={handlePostClick} className="bg-black text-[#00df9a] rounded-md font-medium py-3 px-6 mb-4 inline-block">Calculate CDR Ratio</button>
       {postResponse && (
         <div className="text-gray-950">
           <h3 className="mb-2">Your Cup Disc Ratio Stats:</h3>
-          <p className="text-center text-lg font-semibold">ID: {postResponse.id}</p>
-          <p className="text-center text-lg font-semibold">Uploaded Image: {postResponse.uploaded_image}</p>
-          <p className="text-center text-lg font-semibold">Disc Area: {postResponse.disc_area}</p>
-          <p className="text-center text-lg font-semibold">Cup Area: {postResponse.cup_area}</p>
-          <p className="text-center text-lg font-semibold">Cup/Disc Ratio: {postResponse.cupdisc_ratio}</p>
+          <ul className="list-disc text-center text-lg font-semibold">
+            <li>ID: {postResponse.id}</li>
+            <li>Uploaded Image: {postResponse.uploaded_image}</li>
+            <li>Disc Area: {postResponse.disc_area}</li>
+            <li>Cup Area: {postResponse.cup_area}</li>
+            <li>Cup/Disc Ratio: {postResponse.cupdisc_ratio}</li>
+          </ul>
           <img src={postResponse.s3_link} alt="Processed Image" className="mt-4 mx-auto" />
         </div>
       )}
     </div>
   );
+  
     
 };
 
