@@ -53,7 +53,7 @@ const ImageUploadComponent = ({backendUrl}) => {
       <h2>Image Upload Component</h2>
 
       <input type="file" accept="image/*" onChange={handleImageChange} />
-      <button onClick={handleUpload}>Upload Image</button>
+      <button className='bg-white'onClick={handleUpload}>Upload Image</button>
 
       {uploadStatus === 'success' && (
         <div style={{ color: 'green' }}>File uploaded successfully!</div>
