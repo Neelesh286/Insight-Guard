@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const ImageUploadComponent = () => {
+const ImageUploadComponent = ({backendUrl}) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploadStatus, setUploadStatus] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -18,7 +18,7 @@ const ImageUploadComponent = () => {
       formData.append('image', selectedImage);
 
       try {
-        const response = await axios.post('http://localhost:8000/api/upload/', formData, {
+        const response = await axios.post(`${backendUrl}/api/upload/`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -31,7 +31,7 @@ const ImageUploadComponent = () => {
         // Extract the image ID from the response
         const imageId = response.data.id;
         // Now make a GET request to fetch the result for the uploaded image
-        const resultResponse = await axios.get(`http://localhost:8000/api/result/${imageId}/`);
+        const resultResponse = await axios.get(`${backendUrl}/api/result/${imageId}/`);
         console.log('Result:', resultResponse.data);
         setResultData(resultResponse.data);
       } catch (error) {

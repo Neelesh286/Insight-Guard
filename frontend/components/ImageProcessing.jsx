@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const ImageProcessingComponent = () => {
+const ImageProcessingComponent = ({ backendUrl }) => {
   const [postResponse, setPostResponse] = useState(null);
 
   const handlePostClick = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/image-process/');
+      const response = await axios.post(`${backendUrl}/api/image-process/`);
       setPostResponse(response.data.status);
     } catch (error) {
       console.error('Error posting image:', error);

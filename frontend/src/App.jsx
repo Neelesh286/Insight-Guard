@@ -4,11 +4,11 @@ import axios from 'axios'
 // import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
+function App({backendUrl}) {
   const [message, setMessage] = useState('')
 
   useEffect(()=>{
-    axios.get('http://localhost:8000/api/hello-world')
+    axios.get(`${backendUrl}/api/hello-world`)
     .then(response=>{
       setMessage(response.data.message)
     })
