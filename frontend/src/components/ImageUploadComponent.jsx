@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const ImageUploadComponent = ({backendUrl}) => {
+const ImageUploadComponent = ({ backendUrl }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploadStatus, setUploadStatus] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -49,29 +49,33 @@ const ImageUploadComponent = ({backendUrl}) => {
   };
 
   return (
-    <div>
-      <h2>Image Upload Component</h2>
-
-      <input type="file" accept="image/*" onChange={handleImageChange} />
-      <button className='bg-white'onClick={handleUpload}>Upload Image</button>
-
-      {uploadStatus === 'success' && (
-        <div style={{ color: 'green' }}>File uploaded successfully!</div>
-      )}
-
-      {uploadStatus === 'error' && (
-        <div style={{ color: 'red' }}>{errorMessage}</div>
-      )}
-
-      {resultData && (
-        <div>
-          <h3>Result for Uploaded Image</h3>
-          <p>Status: {resultData.status}</p>
-          {/* Display additional result data as needed */}
+    <div className='w-full bg-white py-16 px-4'>
+      <div className='max-w-[1240px] mx-auto grid md:grid-cols-2'>
+        <div className="md:col-span-2 text-center">
+          <p className="mb-4 text-lg font-bold">Try our Eye Testing Below !!!</p>
+          <input type="file" accept="image/*" onChange={handleImageChange}   className="md:col-span-2 mb-4 mx-auto appearance-none border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-4"/>
+          <button onClick={handleUpload} className="bg-black text-[#00df9a] w-[200px] rounded-md font-medium my-6 py-3">Upload Image</button>
         </div>
-      )}
+
+        {uploadStatus === 'success' && (
+          <div className="md:col-span-2 text-green-600 text-center">File uploaded successfully!</div>
+        )}
+
+        {uploadStatus === 'error' && (
+          <div className="md:col-span-2 text-red-600 text-center">{errorMessage}</div>
+        )}
+
+        {resultData && (
+          <div className="md:col-span-2">
+            <h3 className="text-center mb-4">Result for Uploaded Image</h3>
+            <p className='text-center mb-4'>Status: {resultData.status}</p>
+            {/* Display additional result data as needed */}
+          </div>
+        )}
+      </div>
     </div>
   );
+
 };
 
 export default ImageUploadComponent;
