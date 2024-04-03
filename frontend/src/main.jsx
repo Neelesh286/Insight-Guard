@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
+import TipOfTheDay from './components/TipOfTheDay.jsx'
 import ImageUploadComponent from './components/ImageUploadComponent.jsx'
 import ImageProcessingComponent from './components/ImageProcessing.jsx'
 import Navbar from './components/Navbar.jsx'
@@ -20,6 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Hero />
     <Analytics />
     <Cards />
+    <TipOfTheDay />
     <ImageUploadComponent backendUrl={BACKENDURL}/>
     <ImageProcessingComponent backendUrl={BACKENDURL}/>
     <Newsletter />
