@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import axios from 'axios';
+import LoaderIcon from './LoaderIcon/Loader'
 
 const ImageUploadComponent = ({ backendUrl }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [uploadStatus, setUploadStatus] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const [resultData, setResultData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false); // State to track loading status
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -14,6 +16,7 @@ const ImageUploadComponent = ({ backendUrl }) => {
 
   const handleUpload = async () => {
     if (selectedImage) {
+      setIsLoading(true); // Start loading
       const formData = new FormData();
       formData.append('image', selectedImage);
 
@@ -44,6 +47,8 @@ const ImageUploadComponent = ({ backendUrl }) => {
           setErrorMessage('Error uploading image. Please try again.');
         }
         setUploadStatus('error');
+      } finally {
+        setIsLoading(false); // Stop loading
       }
     }
   };
@@ -54,7 +59,9 @@ const ImageUploadComponent = ({ backendUrl }) => {
         <div className="md:col-span-2 text-center">
           <p className="md:text-4xl sm:text-3xl text-2xl font-bold py-2">Try our Eye Testing Below !!!</p>
           <input type="file" accept="image/*" onChange={handleImageChange}   className="md:col-span-2 mb-4 mx-auto appearance-none border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-4"/>
-          <button onClick={handleUpload} className="bg-black text-[#00df9a] w-[200px] rounded-md font-medium my-6 py-3">Upload Image</button>
+          <button onClick={handleUpload} className="bg-black text-[#00df9a] w-[200px] rounded-md font-medium my-6 py-3">
+            {isLoading ? <LoaderIcon /> : 'Upload Image'} {/* Conditional rendering of loader icon */}
+          </button>
         </div>
 
         {uploadStatus === 'success' && (
