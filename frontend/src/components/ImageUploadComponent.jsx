@@ -86,3 +86,7 @@ const ImageUploadComponent = ({ backendUrl }) => {
 };
 
 export default ImageUploadComponent;
+
+
+//CLIENT ID: 830534639173-5dq481qkrm457r2m6epos7g9gna1n3ou.apps.googleusercontent.com
+//CLIENT SECRET: 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
