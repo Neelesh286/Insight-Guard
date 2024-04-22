@@ -13,7 +13,7 @@ TASK LIST
 - [x] Make validation before upload 
 - [x] Refactor image after upload 
 - [x] Make model predict 
-- [x] Draw Eclipse with Opencv2 - **WIP 🛠️**
+- [x] Draw Eclipse with Opencv2 
 - [x] Upload image to s3
 
 - Download our ML model using the link [here](https://drive.google.com/file/d/19NnGMA99WZls7KM4sJ7jArz7dFzXJKnF/view?usp=drive_link)
