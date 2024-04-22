@@ -15,8 +15,8 @@ const Navbar = () => {
     <div className='flex justify-between items-center h-24 max-w-[1240px] mx-auto px-4 text-white'>
       <h1 className='w-full text-3xl font-bold text-[#00df9a]'>INSIGHT GUARD</h1>
       <ul className='hidden md:flex'>
-        <a href="/"><li className='p-4'>Home</li></a>
-        <a href="/about"><li className='p-4'>About</li></a>
+        <Link href="/"><li className='p-4'>Home</li></Link>
+        <Link to="/about"><li className='p-4'>About</li></Link>
         <li className='p-4'>Resources</li>
         <li className='p-4'>About</li>
         <li className='p-4'>Contact</li>

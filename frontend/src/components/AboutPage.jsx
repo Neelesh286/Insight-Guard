@@ -1,7 +1,9 @@
 const AboutPage = () => {
   return (
-    <div>I am About Page</div>
-  )
+    <>
+      <h1 style={{ background: 'blue' }}>I AM ABOUT PAGE</h1>
+    </>
+  );
 }
 
-export default AboutPage
+export default AboutPage;

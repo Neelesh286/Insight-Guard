@@ -14,23 +14,30 @@ import Footer from './components/Footer.jsx'
 import './index.css'
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import GeminiPrompt from './components/GeminiPrompt.jsx'
+import AboutPage from './components/AboutPage.jsx'
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom"
 
 const BACKENDURL = 'http://127.0.0.1:8000'
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App backendUrl={BACKENDURL}/>
+  },
+  {
+    path:'/about',
+    element: <AboutPage/>
+  }
+]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <GoogleOAuthProvider clientId='830534639173-5dq481qkrm457r2m6epos7g9gna1n3ou.apps.googleusercontent.com' >
     <React.StrictMode>
     <GoogleLoginComponent />
-    <App backendUrl={BACKENDURL}/>
-    <Hero />
-    <Analytics />
-    <Cards />
-    <TipOfTheDay />
-    <ImageUploadComponent backendUrl={BACKENDURL}/>
-    <ImageProcessingComponent backendUrl={BACKENDURL}/>
-    <GeminiPrompt/>
-    <Newsletter />
-    <Footer />
+    <RouterProvider router={router} />
   </React.StrictMode>
   </GoogleOAuthProvider> 
 )

@@ -1,47 +1,52 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios'
+import { useState, useEffect } from "react";
+import axios from "axios";
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
-import './App.css'
-import Navbar from './components/Navbar';
-import {createBrowserRouter, RouterProvider} from 'react-router-dom'
-import AboutPage from './components/AboutPage';
-import Hero from './components/Hero';
+import "./App.css";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Analytics from "./components/Analytics";
+import Cards from "./components/Cards";
+import Footer from "./components/Footer";
+import GeminiPrompt from "./components/GeminiPrompt";
+import TipOfTheDay from "./components/TipOfTheDay";
+import ImageProcessingComponent from "./components/ImageProcessing";
+import ImageUploadComponent from "./components/ImageUploadComponent";
+import Newsletter from "./components/Newsletter";
 
 
-function App({backendUrl}) {
-  const router = createBrowserRouter([
-    {
-      path:"/",
-      element: <Hero/>
-    },
-    {
-      path:"/about",
-      element: <AboutPage/>
-    }
-  ])
+function App({ backendUrl }) {
+  const BACKENDURL = "http://127.0.0.1:8000";
 
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState("");
 
-  useEffect(()=>{
-    axios.get(`${backendUrl}/api/hello-world`)
-    .then(response=>{
-      setMessage(response.data.message)
-    })
-    .catch(error=>{
-      console.log(error)
-    })
-  },[])
+  useEffect(() => {
+    axios
+      .get(`${backendUrl}/api/hello-world`)
+      .then((response) => {
+        setMessage(response.data.message);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
-  
-  return(
+  return (
     <>
       <h1>Hello World From React ⚛️</h1>
       <p>{message} From Django ⚒️</p>
       <Navbar />
-      <RouterProvider router={router}/>
+      <Hero />
+      <Analytics />
+      <Cards />
+      <TipOfTheDay />
+      <ImageUploadComponent backendUrl={BACKENDURL} />
+      <ImageProcessingComponent backendUrl={BACKENDURL} />
+      <GeminiPrompt />
+      <Newsletter />
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
