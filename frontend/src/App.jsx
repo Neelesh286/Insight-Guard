@@ -3,8 +3,24 @@ import axios from 'axios'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
+import Navbar from './components/Navbar';
+import {createBrowserRouter, RouterProvider} from 'react-router-dom'
+import AboutPage from './components/AboutPage';
+import Hero from './components/Hero';
+
 
 function App({backendUrl}) {
+  const router = createBrowserRouter([
+    {
+      path:"/",
+      element: <Hero/>
+    },
+    {
+      path:"/about",
+      element: <AboutPage/>
+    }
+  ])
+
   const [message, setMessage] = useState('')
 
   useEffect(()=>{
@@ -17,11 +33,14 @@ function App({backendUrl}) {
     })
   },[])
 
+  
   return(
-    <div>
+    <>
       <h1>Hello World From React ⚛️</h1>
       <p>{message} From Django ⚒️</p>
-    </div>
+      <Navbar />
+      <RouterProvider router={router}/>
+    </>
   )
 }
 

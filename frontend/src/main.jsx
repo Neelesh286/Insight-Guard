@@ -20,9 +20,8 @@ const BACKENDURL = 'http://127.0.0.1:8000'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <GoogleOAuthProvider clientId='830534639173-5dq481qkrm457r2m6epos7g9gna1n3ou.apps.googleusercontent.com' >
     <React.StrictMode>
-    <App backendUrl={BACKENDURL}/>
     <GoogleLoginComponent />
-    <Navbar />
+    <App backendUrl={BACKENDURL}/>
     <Hero />
     <Analytics />
     <Cards />
