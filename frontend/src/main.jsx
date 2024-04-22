@@ -20,7 +20,7 @@ import {
   RouterProvider,
 } from "react-router-dom"
 
-const BACKENDURL = 'http://127.0.0.1:8000'
+const BACKENDURL = 'http://localhost:8000'
 
 const router = createBrowserRouter([
   {

@@ -1,9 +1,17 @@
-# app1/Dockerfile
-FROM python:3.10-alpine
+FROM --platform=$BUILDPLATFORM python:3.8 AS builder
 
-WORKDIR /app
-COPY . /app
+# Install necessary system packages
+RUN apt-get update && apt-get install -y \
+    libgl1-mesa-glx \
+    && rm -rf /var/lib/apt/lists/*
 
+WORKDIR /code/
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+COPY requirements.txt ./
 RUN pip install -r requirements.txt
-
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+COPY . .
+ENTRYPOINT [ "python3" ]
+CMD ["manage.py" ,"runserver","0.0.0.0:8000" ]
+VOLUME .:/final-year-code/data
+EXPOSE 8000
