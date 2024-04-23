@@ -13,7 +13,7 @@ import TipOfTheDay from "./components/TipOfTheDay";
 import ImageProcessingComponent from "./components/ImageProcessing";
 import ImageUploadComponent from "./components/ImageUploadComponent";
 import Newsletter from "./components/Newsletter";
-
+import FadeInLeft from "./components/FadeInLeft";
 
 function App({ backendUrl }) {
   const BACKENDURL = "http://localhost:8000";

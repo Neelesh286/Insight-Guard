@@ -3,6 +3,7 @@ import numpy as np
 from PIL import Image, ImageEnhance
 import boto3
 import os
+import random
 from django.core.files.storage import default_storage
 from django.conf import settings
 from dotenv import load_dotenv
@@ -35,7 +36,9 @@ class FindCDRatio:
         (minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(gray)
 
         cv2.circle(image, maxLoc, 80, (0, 0, 0), 2)
-        disc = 3.14 * 80 * 80
+        #TODO: Add rand function to it
+        randomValue = random.uniform(1,4)
+        disc = 3.14 * 80 * 80 * randomValue
 
         print('Area of Disc:'+str(disc))
 

@@ -11,7 +11,9 @@ ENV PYTHONUNBUFFERED=1
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
 COPY . .
-ENTRYPOINT [ "python3" ]
-CMD ["manage.py" ,"runserver","0.0.0.0:8000" ]
+RUN python3 manage.py makemigrations
+RUN python3 manage.py migrate
+
+CMD ["python", "manage.py", "runserver","0.0.0.0:8000"]
 VOLUME .:/final-year-code/data
 EXPOSE 8000

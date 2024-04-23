@@ -5,3 +5,21 @@
 body {
     background-color: #000300;
   }
+
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .fadeInLeft {
+    animation-name: fadeInLeft;
+    animation-duration: 3s;
+    animation-fill-mode: both;
+  }
+  
