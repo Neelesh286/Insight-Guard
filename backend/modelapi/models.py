@@ -23,10 +23,10 @@ class UploadedResult(models.Model):
         ]
 class ProcessedImage(models.Model):
     uploaded_image = models.ForeignKey(UploadedImage, on_delete=models.CASCADE)
-    disc_area = models.CharField(max_length = 50)
-    cup_area = models.CharField(max_length = 50)
-    cupdisc_ratio = models.CharField(max_length = 50)
-    s3_link = models.URLField()
+    disc_area = models.CharField(max_length = 200,blank=True,null=True)
+    cup_area = models.CharField(max_length = 200,blank=True,null=True)
+    cupdisc_ratio = models.CharField(max_length = 200,blank=True,null=True)
+    s3_link = models.URLField(blank=True,null=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
