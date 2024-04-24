@@ -1,27 +1,15 @@
 version: '3'
 
 services:
-
-  db:
-    image: postgres
-    environment:
-      POSTGRES_PASSWORD: mypassword
-
   backend:
     build:
       context: ./backend
     ports:
       - "8000:8000"
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
     depends_on:
-      - db
-    volumes:
-      - .:code/
-
-
-  # frontend:
-  #   build:
-  #     context: ./frontend
-  #   ports:
-  #     - "3000:3000"
-  #   depends_on:
-  #     - db
+      - backend
