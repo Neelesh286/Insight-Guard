@@ -23,9 +23,9 @@ class UploadedResult(models.Model):
         ]
 class ProcessedImage(models.Model):
     uploaded_image = models.ForeignKey(UploadedImage, on_delete=models.CASCADE)
-    disc_area = models.FloatField(max_length = 50)
-    cup_area = models.FloatField(max_length = 50)
-    cupdisc_ratio = models.FloatField(max_length = 50)
+    disc_area = models.CharField(max_length = 50)
+    cup_area = models.CharField(max_length = 50)
+    cupdisc_ratio = models.CharField(max_length = 50)
     s3_link = models.URLField()
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
