@@ -12,7 +12,7 @@ def img_to_polygons(image):
     _, th2 = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
 
     # Find contours in the binary image
-    contours, hierarchy = cv2.findContours(th2, cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
+    contours, _ = cv2.findContours(th2, cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
 
     # Extract coordinates of white regions
     white_regions_coordinates = []
@@ -31,7 +31,7 @@ def img_to_polygons(image):
                     crdnts = [{'x': i[0], 'y': i[1]} for i in region]
                     cordnt_list.append(crdnts)
 
-    return cordnt_list
+    return cordnt_list, th2
 
 # Set the current working directory
 path = os.getcwd()
@@ -56,7 +56,7 @@ for file in files:
     img = cv2.imread(fitem)
 
     # Extract polygons from the image
-    polygons = img_to_polygons(img)
+    polygons, th2 = img_to_polygons(img)
 
     # Get the height and width of the image
     height, width = img.shape[:2]
@@ -74,14 +74,22 @@ for file in files:
         # Draw the polygon on the black image
         cv2.polylines(black_image, [vertices], isClosed=True, color=(0, 255, 0), thickness=2)
 
-    # Draw circles for "Cup" and "Disc"
-    cup_center = (width // 2, height // 2)  # Adjust as needed
-    disc_center = (width // 4, height // 4)  # Adjust as needed
-    cup_radius = 50  # Adjust as needed
-    disc_radius = 100  # Adjust as needed
+    # Find contours in the binary image
+    contours, _ = cv2.findContours(th2, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    
+    # Check if contours list is not empty
+    if contours:  
+        # Find the contour representing the outermost region (disc)
+        outer_contour = max(contours, key=cv2.contourArea)
+        ellipse = cv2.fitEllipse(outer_contour)
 
-    cv2.circle(black_image, cup_center, cup_radius, (0, 0, 255), 2)  # Red circle for "Cup"
-    cv2.circle(black_image, disc_center, disc_radius, (0, 0, 255), 2)  # Red circle for "Disc"
+        # Draw ellipse for "Disc"
+        cv2.ellipse(img, ellipse, (0, 0, 0), 2)  # Dark black ellipse for "Disc"
 
-    # Save the output image
-    cv2.imwrite(fout, black_image)
+        # Scale down the major and minor axes to get the ellipse for "Cup"
+        (x, y), (major_axis, minor_axis), angle = ellipse
+        cup_ellipse = ((x, y), (major_axis * 0.5, minor_axis * 0.5), angle)
+        cv2.ellipse(img, cup_ellipse, (0, 0, 0), 2)  # Dark black ellipse for "Cup"
+
+    # Save the output image with ellipses drawn
+    cv2.imwrite(fout, img)

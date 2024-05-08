@@ -41,7 +41,7 @@ class UploadedImageSerializer(serializers.ModelSerializer):
 class UploadedResultSerializer(serializers.ModelSerializer):
     class Meta:
         model = UploadedResult
-        fields = ('id', 'uploaded_image', 'status')
+        fields = ('__all__')
 class ProcessedImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProcessedImage

@@ -12,7 +12,7 @@ class UploadedImage(models.Model):
 class UploadedResult(models.Model):
     uploaded_image = models.ForeignKey(UploadedImage, on_delete=models.CASCADE)
     status = models.CharField(max_length=50)
-
+    created_at = models.DateTimeField(auto_now_add=True)
     class Meta:
         indexes = [
             models.Index(fields=['uploaded_image'])

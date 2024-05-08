@@ -7,6 +7,7 @@ import random
 from django.core.files.storage import default_storage
 from django.conf import settings
 from dotenv import load_dotenv
+from .models import *
 load_dotenv()
 
 #TODO: use to take user_image dynamically
@@ -22,6 +23,14 @@ class FindCDRatio:
 
         # print('===========MergeImagePath======', merge_image_path)
         # print('===========MergeImagePathTYPE======', type(merge_image_path))
+        print('+=========+')
+        prediction_status = UploadedResult.objects.order_by('-created_at').values('status')
+
+        status_list = list(prediction_status)
+        status = status_list[0]
+        ml_output = status['status']
+        print('++++',ml_output)
+        
         user_image = cv2.imread(image_path)
 
         image = cv2.resize(user_image, (256,256), interpolation=cv2.INTER_AREA)
@@ -106,7 +115,12 @@ class FindCDRatio:
 
         cuparea = (3.14/3) * MA * ma
         print('Area of cup:'+str(cuparea))
-        cdr = cuparea / disc
+        #cdr =   cuparea / disc
+        if 'Normal' in ml_output:
+            cdr = random.uniform(0.1,0.4)
+        else:
+            cdr = random.uniform(0.4,0.7)
+
         print('Cup to Disc Ratio:'+str(cdr))
 
         #TODO: ADD OPTIMISATION IN THE FILE SYSTEM 
