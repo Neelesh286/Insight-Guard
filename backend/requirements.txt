@@ -10,3 +10,4 @@ tensorflow==2.13.1
 django-dotenv
 python-dotenv
 boto3
+cloudinary
