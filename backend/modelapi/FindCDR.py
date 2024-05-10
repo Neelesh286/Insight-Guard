@@ -161,7 +161,6 @@ class FindCDRatio:
             s3.upload_fileobj(f, bucketname, object_name)
         
         link = f"https://{bucketname}.s3.ap-south-1.amazonaws.com/{object_name}"
-                Configure Cloudinary
         # print('###########', "CLOUDINARY FUNCTION CALLED =====")
         # cloud_name = 'dvrr0trir'
         # api_key = '681872991239452'
