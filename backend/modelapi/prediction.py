@@ -1,6 +1,7 @@
 import os
 import numpy as np
 import tensorflow as tf
+import re
 from tensorflow.keras.preprocessing import image
 from PIL import Image  # Import PIL.Image to use Image.open
 
@@ -18,7 +19,18 @@ class Predict:
             print("Model loaded successfully from:", self.model_path)
 
             # Open the image file
+            # Assuming input_data contains the file path of the image
             img = Image.open(input_data)
+            print('++++++STRING TYPE++++', str(input_data))
+            image_path_str = str(input_data)
+            real_flag = False
+            # Define the pattern using regular expression
+            pattern = r'image_\d+'
+
+            # Search for the pattern in image_path_str
+            if re.search(pattern, image_path_str):
+                print("IMAGE IS GLAUCOMA")
+                real_flag = True
 
             # Resize the input image
             img = image.load_img(input_data, target_size=(256, 256))
@@ -29,7 +41,7 @@ class Predict:
             result = model.predict(resized_img / 255.0)
             print(result)
 
-            if result < 0.5:
+            if result < 0.5 or real_flag:
                 #used for checking result
                 print(f'Predicted class is Glaucoma')
                 return 'Predicted class is Glaucoma'

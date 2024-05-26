@@ -17,7 +17,7 @@ class UploadedImageSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(e)
         
         valid_formats = ['PNG', 'JPEG', 'JPG']
-        print('====IMG Format===', img.format)
+        print('====IMGAGE Format===', img.format)
         if img.format not in valid_formats:
             raise serializers.ValidationError("Only PNG & JPEG formats are supported")
         
