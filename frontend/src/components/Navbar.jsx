@@ -17,9 +17,7 @@ const Navbar = () => {
       <ul className='hidden md:flex'>
         <Link href="/"><li className='p-4'>Home</li></Link>
         <Link to="/about"><li className='p-4'>About</li></Link>
-        <li className='p-4'>Resources</li>
-        <li className='p-4'>About</li>
-        <li className='p-4'>Contact</li>
+  
       </ul>
       <div onClick={handleNav} className='block md:hidden'>
           {nav ? <AiOutlineClose size={20}/> : <AiOutlineMenu size={20} />}
