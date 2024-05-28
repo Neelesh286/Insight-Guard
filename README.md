@@ -1,12 +1,6 @@
-# React + Vite
+<h1 align="center" id="title">Insight-Guard</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
+<p align="center"><img src="https://socialify.git.ci/Younus-Saberi/Insight-Guard/image?description=1&amp;font=Raleway&amp;forks=1&amp;issues=1&amp;language=1&amp;name=1&amp;owner=1&amp;pattern=Signal&amp;pulls=1&amp;stargazers=1&amp;theme=Dark" alt="project-image"></p>
 
 TASK LIST
 - [x] Make Basic File upload.
