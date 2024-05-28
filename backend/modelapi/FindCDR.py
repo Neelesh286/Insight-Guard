@@ -161,21 +161,5 @@ class FindCDRatio:
             s3.upload_fileobj(f, bucketname, object_name)
         
         link = f"https://{bucketname}.s3.ap-south-1.amazonaws.com/{object_name}"
-        # link = "https://temp-link.com"
-        # print('###########', "CLOUDINARY FUNCTION CALLED =====")
-        # cloud_name = 'dvrr0trir'
-        # api_key = '681872991239452'
-        # api_secret = 'W_T_W8is-HvgOA9FvtPKcpCiAVo'
-        # cloudinary.config(
-        #     cloud_name=cloud_name,
-        #     api_key=api_key,
-        #     api_secret=api_secret
-        # )
-        # print('-==================Configured Successfully-========')
-        # # Upload image to Cloudinary
-        # result = upload(path_file, public_id=object_name)
 
-        # # Construct the link
-        # link = result['secure_url']
-        # print("=====YOUR LINK IS ===========:", link)
         return link 
