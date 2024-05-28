@@ -9,7 +9,7 @@ const GeminiPrompt = () => {
   const [apiData, setApiData] = useState([]);
 
   const genAI = new GoogleGenerativeAI(
-    "AIzaSyDSaZR7k1bTb2YzebVOH17A0hnZVTMHdFo"
+    // PLEASE ADD YOUR GEMINI API KEY
   );
 
   const fetchData = async () => {
