@@ -102,10 +102,17 @@ Run the Docker Compose File
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![Screenshot 2024-04-28 195426](https://github.com/Younus-Saberi/Insight-Guard/assets/73644685/c7883fa2-6420-4a96-a992-2b28023edec7)
+![Screenshot 2024-04-28 193340](https://github.com/Younus-Saberi/Insight-Guard/assets/73644685/8af460df-4b33-447c-aaa9-dc4fd8cc446b)
 
+![Screenshot 2024-04-28 222730](https://github.com/Younus-Saberi/Insight-Guard/assets/73644685/605f8e63-62ec-43c1-bda9-6620e385d2c2)
+![Screenshot 2024-04-28 193553](https://github.com/Younus-Saberi/Insight-Guard/assets/73644685/2b907b59-52c4-4a26-982d-2f784c82ba89)
+![Screenshot 2024-05-08 161731](https://github.com/Younus-Saberi/Insight-Guard/assets/73644685/26bde037-55ea-4395-8d55-c7ef3a48afc9)
 
+![Screenshot 2024-04-17 132308](https://github.com/Younus-Saberi/Insight-Guard/assets/73644685/59927ad2-1235-4b4b-b156-a5babed2c1ff)
+![Screenshot 2024-04-28 195230](https://github.com/Younus-Saberi/Insight-Guard/assets/73644685/9f2f98e2-0a13-42c2-9e16-b5eb6d515f11)
 ## Environment Variables
+
 
 To run this project, you will need to add the following environment variables to your .env file
 
