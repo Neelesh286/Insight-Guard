@@ -9,6 +9,8 @@ A Chronic eye disorder called glaucoma leading to irreversible blindness by dama
 nerve of the eye. It is provoked due to exalted intraocular pressure inside the eye. Detecting glaucoma is the
 most challenging process in case of open angle glaucoma (OAG) due to lack of initial symptoms.We have developed a Full Stack Application called Insight Guard to detect the disease with the help of the Machine Learning and Image Processing Library OpenCV
 
+# Architecture Diagram
+![Gluacoma_Architecture_Diagram (2)](https://github.com/Younus-Saberi/Insight-Guard/assets/73644685/4c81be59-56e5-4acf-8624-9dd54aa9a464)
 
 
 ## Installation
