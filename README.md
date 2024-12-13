@@ -130,8 +130,8 @@ To run this project, you will need to add the following environment variables to
 
 ## Support
 
-For support, email younussaberi@gmail.com 
-Contact me at [Linkedin](https://www.linkedin.com/in/younus-saberi/)
+For support, email neeleshsp123@gmail.com @gmail.com 
+Contact me at [Linkedin](https://www.linkedin.com/in/neelesh-s/)
 
 
 ## Documentation
